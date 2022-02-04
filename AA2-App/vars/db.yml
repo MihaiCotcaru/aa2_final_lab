@@ -1,0 +1,6 @@
+postgresql_databases:
+  - name: example_db
+postgresql_users:
+  - name: postgresql
+    password: r3dh4t1!
+postgresql_version: "12"
