@@ -1,4 +1,7 @@
 - hosts: control
+  vars:
+    satellite_activationkey: gpte-labs-rhel8
+    satellite_org: prod
   tasks:
     - debug:
       
@@ -30,6 +33,6 @@
     - name: register system and attach subs
       redhat_subscription:
         state:   present
-        username: "admin"
-        password: "r3dh4t1!"
+        activationkey: "{{ satellite_activationkey }}"
+        org_id: "{{ satellite_org }}"
         auto_attach: true
