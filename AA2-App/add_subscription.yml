@@ -33,6 +33,6 @@
     - name: register system and attach subs
       redhat_subscription:
         state:   present
-        activationkey: "{{ satellite_activationkey }}"
-        org_id: "{{ satellite_org }}"
+        activationkey: "gpte-labs-rhel8"
+        org_id: "prod"
         auto_attach: true
