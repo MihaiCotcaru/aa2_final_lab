@@ -28,20 +28,12 @@
   tags:
     - smoketest  
   tasks:
-    - name: os_server_info
-      os_server_info:
-        server: lb 
-      register: lb_instance
- 
     - name: Check webserver for correct response
       uri:
-        url: "http://{{ __instance.private_v4 }}/?name=root"
+        url: "http://frontend1/ping"
         return_content: yes
       until: '"alive" in result.content'
       retries: 10
       delay: 1
-      loop: "{{ lb_instance.openstack_servers }}"
-      loop_control:
-        loop_var: __instance      
       register: result
       delegate_to: localhost
