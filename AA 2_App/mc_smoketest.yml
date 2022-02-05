@@ -1,6 +1,7 @@
 ---
 - name: End to end smoke tests
-  hosts: backend_servers:database_servers
+  hosts: database_servers
+  # hosts: backend_servers:database_servers
   gather_facts: true
   become: true
   tags:
