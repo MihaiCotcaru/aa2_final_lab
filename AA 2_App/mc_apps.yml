@@ -1,0 +1,23 @@
+---
+- name: Play to setup flask servers
+  hosts: backend_servers
+  tasks:
+    - debug:
+        msg: "Start flask server setup"
+
+    - name: Setup firewall
+      include_role:
+        name: mc-firewall
+      vars:
+        firewall_services:
+          - http
+        firewall_tcp_ports:
+          - 8080
+
+    - name: Setup flask server
+      include_role:
+        name: mc-flask
+
+    - debug:
+        msg: "Finished flask server setup"
+

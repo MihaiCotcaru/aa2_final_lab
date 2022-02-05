@@ -1,0 +1,66 @@
+---
+
+- name: Play to setup postgresql server
+  hosts: db
+  tasks:
+    - debug:
+        msg: "Start PostgreSQL server setup"
+
+    - name: Setup firewall
+      include_role:
+        name: mc-firewall
+      vars:
+        firewall_services:
+          - postgres
+
+    - name: Setup PostgreSQL server
+      include_role:
+        name: mc-db-server
+
+    - debug:
+        msg: "Finished PostgreSQL server setup"
+
+- name: Play to setup flask servers
+  hosts: backend_servers
+  tasks:
+    - debug:
+        msg: "Start flask server setup"
+
+    - name: Setup firewall
+      include_role:
+        name: mc-firewall
+      vars:
+        firewall_services:
+          - http
+        firewall_tcp_ports:
+          - 8080
+
+    - name: Setup flask server
+      include_role:
+        name: mc-flask
+
+    - debug:
+        msg: "Finished flask server setup"
+
+- name: Play to setup Haproxy
+  hosts: load_balancers
+  tasks:
+    - debug:
+        msg: "Start HAproxy server setup"
+
+    - name: Setup firewall
+      include_role:
+        name: mc-firewall
+      vars:
+        firewall_services:
+          - http
+        firewall_tcp_ports:
+          - 5000
+
+    - name: Setup HAproxy server
+      include_role:
+        name: mc-haproxy
+
+    - debug:
+        msg: "Finished HAproxy server setup"
+

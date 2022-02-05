@@ -1,0 +1,21 @@
+---
+
+- name: Play to setup PostgreSQL server
+  hosts: database_servers
+  tasks:
+    - debug:
+        msg: "Start PostgreSQL server setup"
+
+    - name: Setup firewall
+      include_role:
+        name: mc-firewall
+      vars:
+        firewall_services:
+          - postgres
+
+    - name: Setup PostgreSQL server
+      include_role:
+        name: mc-db-server
+
+    - debug:
+        msg: "Finished PostgreSQL server setup"

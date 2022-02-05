@@ -1,0 +1,5 @@
+---
+- name: restart_haproxy
+  service:
+    name: "{{ load_balancer_services }}"
+    state: restarted
