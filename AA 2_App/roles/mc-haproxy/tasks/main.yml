@@ -12,6 +12,6 @@
 
 - name: Enable Haproxy
   service:
-    name: "{{ load_balancer_services }}"
+    name: haproxy
     state: started
     enabled: true
