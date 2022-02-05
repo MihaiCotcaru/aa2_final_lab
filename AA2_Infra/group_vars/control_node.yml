@@ -22,7 +22,7 @@ openstack_servers:
     flavor: GLOBAL-CPU_4_Memory_8192_Disk_30_flavor
     key_name: "{{GUID}}-keypair"
     network: "{{GUID}}-dev-network"
-  - instance_name: appdb1
+  - instance_name: db
     AnsibleGroup: database_servers
     deployment: dev
     security_group_name: "{{GUID}}-HostSG"
