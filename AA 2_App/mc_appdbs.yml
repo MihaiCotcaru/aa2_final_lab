@@ -10,8 +10,8 @@
       include_role:
         name: mc-firewall
       vars:
-        firewall_services:
-          - postgres
+        firewall_tcp_ports:
+          - 5432/tcp
 
     - name: Setup PostgreSQL server
       include_role:
