@@ -11,7 +11,7 @@
         name: mc-firewall
       vars:
         firewall_tcp_ports:
-          - 5432/tcp
+          - "5432"
 
     - name: Setup PostgreSQL server
       include_role:
